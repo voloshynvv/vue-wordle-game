@@ -27,17 +27,34 @@
 
   @keyframes pop-in {
     0% {
-      opacity: 0;
-      scale: 0.8;
+      scale: 0.9;
     }
     40% {
-      transform: scale(1.05);
-      opacity: 1;
+      scale: 1.05;
     }
   }
 }
 
-body {
-  background-color: var(--color-gray-950);
-  color: var(--color-white);
+@layer base {
+  body {
+    background-color: var(--color-gray-950);
+    color: var(--color-white);
+  }
+}
+
+@layer utilities {
+  .correct {
+    border-color: var(--color-green-700);
+    background-color: var(--color-green-800);
+  }
+
+  .misplaced {
+    border-color: var(--color-yellow-700);
+    background-color: var(--color-yellow-800);
+  }
+
+  .absent {
+    border-color: var(--color-zinc-700);
+    background-color: var(--color-zinc-800);
+  }
 }
