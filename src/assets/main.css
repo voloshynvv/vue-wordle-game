@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap');
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Fira Code', monospace;
+
+  --animate-shake: shake 0.35s 3;
+  --animate-pop-in: pop-in 250ms;
+
+  @keyframes shake {
+    0% {
+      transform: translateX(0);
+    }
+    25% {
+      transform: translateX(3px);
+    }
+    50% {
+      transform: translateX(-3px);
+    }
+    75% {
+      transform: translateX(3px);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes pop-in {
+    0% {
+      opacity: 0;
+      scale: 0.8;
+    }
+    40% {
+      transform: scale(1.05);
+      opacity: 1;
+    }
+  }
+}
+
+body {
+  background-color: var(--color-gray-950);
+  color: var(--color-white);
+}
