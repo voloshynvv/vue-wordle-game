@@ -42,7 +42,7 @@
   }
 }
 
-@layer utilities {
+@layer components {
   .correct {
     border-color: var(--color-green-700);
     background-color: var(--color-green-800);
