@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import GameCell from '@/components/game/GameCell.vue'
+import BoardCell from '@/components/game/BoardCell.vue'
 </script>
 
 <template>
@@ -14,28 +14,28 @@ import GameCell from '@/components/game/GameCell.vue'
     <p>To start the game, just enter any word, for example:</p>
 
     <div class="flex justify-center gap-x-2">
-      <GameCell letter="t" status="absent" />
-      <GameCell letter="a" status="misplaced" />
-      <GameCell letter="b" status="absent" />
-      <GameCell letter="l" status="misplaced" />
-      <GameCell letter="e" status="correct" />
+      <BoardCell letter="t" status="absent" flipped />
+      <BoardCell letter="a" status="misplaced" flipped />
+      <BoardCell letter="b" status="absent" flipped />
+      <BoardCell letter="l" status="misplaced" flipped />
+      <BoardCell letter="e" status="correct" flipped />
     </div>
 
     <div class="bg-slate-800 rounded-2xl p-4 text-left space-y-1.5">
       <div class="flex gap-x-2 items-center">
-        <GameCell class="size-8! text-sm!" letter="t" status="absent" />
-        <GameCell class="size-8! text-sm!" letter="b" status="absent" />
+        <BoardCell class="size-8! text-sm!" letter="t" status="absent" flipped />
+        <BoardCell class="size-8! text-sm!" letter="b" status="absent" flipped />
         <p class="text-sm">aren't in the target word at all.</p>
       </div>
 
       <div class="flex gap-x-2 items-center">
-        <GameCell class="size-8! text-sm!" letter="a" status="misplaced" />
-        <GameCell class="size-8! text-sm!" letter="l" status="misplaced" />
+        <BoardCell class="size-8! text-sm!" letter="a" status="misplaced" flipped />
+        <BoardCell class="size-8! text-sm!" letter="l" status="misplaced" flipped />
         <p class="text-sm">are in the word, but in the wrong spots.</p>
       </div>
 
       <div class="flex gap-x-2 items-center">
-        <GameCell class="size-8! text-sm!" letter="e" status="correct" />
+        <BoardCell class="size-8! text-sm!" letter="e" status="correct" flipped />
         <p class="text-sm">is in the word and in the correct spot.</p>
       </div>
     </div>
@@ -43,21 +43,21 @@ import GameCell from '@/components/game/GameCell.vue'
     <p>Another try to find matching letters in the target word.</p>
 
     <div class="flex justify-center gap-x-2">
-      <GameCell letter="f" status="correct" />
-      <GameCell letter="l" status="correct" />
-      <GameCell letter="a" status="correct" />
-      <GameCell letter="s" status="absent" />
-      <GameCell letter="h" status="absent" />
+      <BoardCell letter="f" status="correct" flipped />
+      <BoardCell letter="l" status="correct" flipped />
+      <BoardCell letter="a" status="correct" flipped />
+      <BoardCell letter="s" status="absent" flipped />
+      <BoardCell letter="h" status="absent" flipped />
     </div>
 
     <p>So close!</p>
 
     <div class="flex justify-center gap-x-2">
-      <GameCell letter="f" status="correct" />
-      <GameCell letter="l" status="correct" />
-      <GameCell letter="a" status="correct" />
-      <GameCell letter="m" status="correct" />
-      <GameCell letter="e" status="correct" />
+      <BoardCell letter="f" status="correct" flipped />
+      <BoardCell letter="l" status="correct" flipped />
+      <BoardCell letter="a" status="correct" flipped />
+      <BoardCell letter="m" status="correct" flipped />
+      <BoardCell letter="e" status="correct" flipped />
     </div>
 
     <p>Got it! 🏆</p>

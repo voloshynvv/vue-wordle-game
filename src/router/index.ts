@@ -1,13 +1,11 @@
 import { createWebHistory, createRouter } from 'vue-router'
 
 import GameView from '@/views/GameView.vue'
-import SettingsView from '@/views/SettingsView.vue'
-import RulesView from '@/views/RulesView.vue'
 
 const routes = [
   { path: '/', component: GameView },
-  { path: '/settings', component: SettingsView },
-  { path: '/rules', component: RulesView },
+  { path: '/settings', component: () => import('@/views/SettingsView.vue') },
+  { path: '/rules', component: () => import('@/views/RulesView.vue') },
 ]
 
 export const router = createRouter({

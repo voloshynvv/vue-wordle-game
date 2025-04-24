@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, computed } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
+import { useGameStore } from '@/stores/game'
 
 const keyboard = [
   ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'],
@@ -7,24 +8,27 @@ const keyboard = [
   ['Backspace', 'z', 'x', 'c', 'v', 'b', 'n', 'm', 'Enter'],
 ]
 
-const { guesses, target } = defineProps<{
-  guesses: string[]
-  target: string
-}>()
-
-const emit = defineEmits<{
-  submit: [key: string]
-}>()
+const game = useGameStore()
 
 const hasFocus = ref()
 
-const absentLetters = computed(() => {
-  const unique = new Set(
-    guesses.flatMap((guess) => guess.split('')).filter((letter) => !target.includes(letter)),
-  )
+function handleKey(keyCode: string) {
+  if (game.animation === 'flip') {
+    return
+  }
 
-  return [...unique]
-})
+  if (keyCode === 'Enter') {
+    game.addGuess()
+    return
+  }
+
+  if (keyCode === 'Backspace') {
+    game.pop()
+    return
+  }
+
+  game.append(keyCode)
+}
 
 function handleKeydown(e: KeyboardEvent) {
   const { key } = e
@@ -33,7 +37,7 @@ function handleKeydown(e: KeyboardEvent) {
     return
   }
 
-  emit('submit', key)
+  handleKey(key)
 }
 
 onMounted(() => window.addEventListener('keydown', handleKeydown))
@@ -44,15 +48,14 @@ onUnmounted(() => window.removeEventListener('keydown', handleKeydown))
   <div class="space-y-1">
     <div class="flex justify-center gap-x-1" v-for="(keys, i) in keyboard" :key="i">
       <button
-        class="bg-slate-700 text-white test p-1.5 px-3 rounded-sm cursor-pointer uppercase test transition-colors hover:bg-slate-800"
-        v-for="key in keys"
-        :key
-        :class="[absentLetters.includes(key) && 'absent']"
+        v-for="keyCode in keys"
+        :key="keyCode"
+        class="bg-slate-700 text-white p-1.5 px-3 rounded-sm cursor-pointer uppercase transition-[background-color,opacity] disabled:cursor-default hover:not-disabled:bg-slate-800"
         @focus="hasFocus = true"
         @blur="hasFocus = false"
-        @click="emit('submit', key)"
+        @click="handleKey(keyCode)"
       >
-        {{ key }}
+        {{ keyCode }}
       </button>
     </div>
   </div>

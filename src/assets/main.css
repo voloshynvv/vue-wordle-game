@@ -41,20 +41,3 @@
     color: var(--color-white);
   }
 }
-
-@layer components {
-  .correct {
-    border-color: var(--color-green-700);
-    background-color: var(--color-green-800);
-  }
-
-  .misplaced {
-    border-color: var(--color-yellow-700);
-    background-color: var(--color-yellow-800);
-  }
-
-  .absent {
-    border-color: var(--color-zinc-700);
-    background-color: var(--color-zinc-800);
-  }
-}
