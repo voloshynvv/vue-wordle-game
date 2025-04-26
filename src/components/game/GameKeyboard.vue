@@ -1,14 +1,28 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted, computed } from 'vue'
 import { useGameStore } from '@/stores/game'
+import { useSettingsStore } from '@/stores/settings'
 
-const keyboard = [
-  ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'],
-  ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'],
-  ['Backspace', 'z', 'x', 'c', 'v', 'b', 'n', 'm', 'Enter'],
-]
-
+const settings = useSettingsStore()
 const game = useGameStore()
+
+const keyboard = computed(() => {
+  return [
+    ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'],
+    ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'],
+    [
+      settings.swapButtons ? 'Backspace' : 'Enter',
+      'z',
+      'x',
+      'c',
+      'v',
+      'b',
+      'n',
+      'm',
+      settings.swapButtons ? 'Enter' : 'Backspace',
+    ],
+  ]
+})
 
 const hasFocus = ref()
 
@@ -30,18 +44,23 @@ function handleKey(keyCode: string) {
   game.append(keyCode)
 }
 
-function handleKeydown(e: KeyboardEvent) {
+function handleKeydownEvent(e: KeyboardEvent) {
   const { key } = e
 
-  if (!keyboard.flat().includes(key) || (hasFocus.value && key === 'Enter')) {
+  if (!keyboard.value.flat().includes(key) || (hasFocus.value && key === 'Enter')) {
     return
   }
 
   handleKey(key)
 }
 
-onMounted(() => window.addEventListener('keydown', handleKeydown))
-onUnmounted(() => window.removeEventListener('keydown', handleKeydown))
+onMounted(() => {
+  if (!settings.ignoreKeyboard) {
+    window.addEventListener('keydown', handleKeydownEvent)
+  }
+})
+
+onUnmounted(() => window.removeEventListener('keydown', handleKeydownEvent))
 </script>
 
 <template>
