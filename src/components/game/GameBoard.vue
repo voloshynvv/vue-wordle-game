@@ -34,7 +34,7 @@ function getCurrentGuess(i: number) {
 </script>
 
 <template>
-  <div class="space-y-1 mx-auto w-fit mb-4">
+  <div class="mx-auto mb-4 w-fit space-y-1">
     <BoardRow
       v-for="(_, i) in GUESSES_COUNT"
       :key="i"
@@ -46,7 +46,7 @@ function getCurrentGuess(i: number) {
   </div>
 
   <p
-    class="text-center mb-4 text-sm rounded-full bg-neutral-200 dark:bg-slate-700 px-3 py-0.5 w-fit mx-auto"
+    class="mx-auto mb-4 w-fit rounded-full bg-neutral-200 px-3 py-0.5 text-center text-sm dark:bg-slate-700"
   >
     <template v-if="game.status === 'won'">You won</template>
     <template v-else-if="game.status === 'lost'">You lost</template>

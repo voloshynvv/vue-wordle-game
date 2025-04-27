@@ -3,7 +3,7 @@ import TheHeader from '@/components/TheHeader.vue'
 </script>
 
 <template>
-  <div class="max-w-xl mx-auto p-4">
+  <div class="mx-auto max-w-xl p-4">
     <TheHeader />
 
     <main class="py-10">

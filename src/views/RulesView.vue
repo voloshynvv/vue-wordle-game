@@ -3,7 +3,7 @@ import BoardCell from '@/components/game/BoardCell.vue'
 </script>
 
 <template>
-  <section class="text-center space-y-4">
+  <section class="space-y-4 text-center">
     <h1 class="sr-only">Rules</h1>
 
     <p>
@@ -22,21 +22,21 @@ import BoardCell from '@/components/game/BoardCell.vue'
     </div>
 
     <div
-      class="bg-neutral-200 border border-neutral-300 dark:bg-slate-800 dark:border-slate-900 rounded-2xl p-4 text-left space-y-1.5"
+      class="space-y-1.5 rounded-2xl border border-neutral-300 bg-neutral-200 p-4 text-left dark:border-slate-900 dark:bg-slate-800"
     >
-      <div class="flex gap-x-2 items-center">
+      <div class="flex items-center gap-x-2">
         <BoardCell class="size-8! text-sm!" letter="t" status="absent" flipped />
         <BoardCell class="size-8! text-sm!" letter="b" status="absent" flipped />
         <p class="text-sm">aren't in the target word at all.</p>
       </div>
 
-      <div class="flex gap-x-2 items-center">
+      <div class="flex items-center gap-x-2">
         <BoardCell class="size-8! text-sm!" letter="a" status="misplaced" flipped />
         <BoardCell class="size-8! text-sm!" letter="l" status="misplaced" flipped />
         <p class="text-sm">are in the word, but in the wrong spots.</p>
       </div>
 
-      <div class="flex gap-x-2 items-center">
+      <div class="flex items-center gap-x-2">
         <BoardCell class="size-8! text-sm!" letter="e" status="correct" flipped />
         <p class="text-sm">is in the word and in the correct spot.</p>
       </div>

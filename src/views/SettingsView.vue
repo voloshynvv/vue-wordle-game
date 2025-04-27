@@ -13,11 +13,11 @@ const settings = useSettingsStore()
 
   <p class="mb-2 text-center">Number of letters</p>
 
-  <div class="flex gap-x-4 justify-center mb-8">
+  <div class="mb-8 flex justify-center gap-x-4">
     <button
-      class="rounded-sm p-1 border-0 border-neutral-400 dark:border-slate-500 size-10 cursor-pointer transition-[scale,background-color] bg-neutral-200 dark:bg-slate-800 hover:scale-110 focus-visible:scale-110"
+      class="size-10 cursor-pointer rounded-sm border-0 border-neutral-400 bg-neutral-200 p-1 transition-[scale,background-color] hover:scale-110 focus-visible:scale-110 dark:border-slate-500 dark:bg-slate-800"
       :class="{
-        'border-2 border-dashed scale-110': settings.guessLength === 4,
+        'scale-110 border-2 border-dashed': settings.guessLength === 4,
       }"
       @click="settings.guessLength = 4"
     >
@@ -25,9 +25,9 @@ const settings = useSettingsStore()
     </button>
 
     <button
-      class="rounded-sm p-1 border-0 border-neutral-400 dark:border-slate-500 size-10 cursor-pointer transition-[scale,background-color] bg-neutral-200 dark:bg-slate-800 hover:scale-110 focus-visible:scale-110"
+      class="size-10 cursor-pointer rounded-sm border-0 border-neutral-400 bg-neutral-200 p-1 transition-[scale,background-color] hover:scale-110 focus-visible:scale-110 dark:border-slate-500 dark:bg-slate-800"
       :class="{
-        'border-2 border-dashed scale-110': settings.guessLength === 5,
+        'scale-110 border-2 border-dashed': settings.guessLength === 5,
       }"
       @click="settings.guessLength = 5"
     >
@@ -35,9 +35,9 @@ const settings = useSettingsStore()
     </button>
 
     <button
-      class="rounded-sm p-1 border-0 border-neutral-400 dark:border-slate-500 size-10 cursor-pointer transition-[scale,background-color] bg-neutral-200 dark:bg-slate-800 hover:scale-110 focus-visible:scale-110"
+      class="size-10 cursor-pointer rounded-sm border-0 border-neutral-400 bg-neutral-200 p-1 transition-[scale,background-color] hover:scale-110 focus-visible:scale-110 dark:border-slate-500 dark:bg-slate-800"
       :class="{
-        'border-2 border-dashed scale-110': settings.guessLength === 6,
+        'scale-110 border-2 border-dashed': settings.guessLength === 6,
       }"
       @click="settings.guessLength = 6"
     >

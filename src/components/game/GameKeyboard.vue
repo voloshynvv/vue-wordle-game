@@ -69,7 +69,7 @@ onUnmounted(() => window.removeEventListener('keydown', handleKeydownEvent))
       <button
         v-for="keyCode in keys"
         :key="keyCode"
-        class="bg-neutral-200 dark:bg-slate-700 dark:text-white p-1.5 px-3 rounded-sm cursor-pointer uppercase transition-[background-color,opacity] disabled:cursor-default hover:bg-neutral-300 dark:hover:bg-slate-800"
+        class="cursor-pointer rounded-sm bg-neutral-200 p-1.5 px-3 uppercase transition-[background-color,opacity] hover:bg-neutral-300 disabled:cursor-default dark:bg-slate-700 dark:text-white dark:hover:bg-slate-800"
         @focus="hasFocus = true"
         @blur="hasFocus = false"
         @click="handleKey(keyCode)"

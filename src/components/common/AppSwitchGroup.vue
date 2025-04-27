@@ -12,7 +12,7 @@ const model = defineModel()
 
 <template>
   <div
-    class="flex items-center justify-between gap-x-4 py-4 border-b border-neutral-200 dark:border-slate-600"
+    class="flex items-center justify-between gap-x-4 border-b border-neutral-200 py-4 dark:border-slate-600"
   >
     <div class="space-y-1">
       <label class="block" :for="id">{{ label }}</label>
