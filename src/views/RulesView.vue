@@ -14,14 +14,16 @@ import BoardCell from '@/components/game/BoardCell.vue'
     <p>To start the game, just enter any word, for example:</p>
 
     <div class="flex justify-center gap-x-2">
-      <BoardCell letter="t" status="absent" flipped />
-      <BoardCell letter="a" status="misplaced" flipped />
-      <BoardCell letter="b" status="absent" flipped />
-      <BoardCell letter="l" status="misplaced" flipped />
-      <BoardCell letter="e" status="correct" flipped />
+      <BoardCell class="size-12! md:size-16!" letter="t" status="absent" flipped />
+      <BoardCell class="size-12! md:size-16!" letter="a" status="misplaced" flipped />
+      <BoardCell class="size-12! md:size-16!" letter="b" status="absent" flipped />
+      <BoardCell class="size-12! md:size-16!" letter="l" status="misplaced" flipped />
+      <BoardCell class="size-12! md:size-16!" letter="e" status="correct" flipped />
     </div>
 
-    <div class="bg-slate-800 rounded-2xl p-4 text-left space-y-1.5">
+    <div
+      class="bg-neutral-200 border border-neutral-300 dark:bg-slate-800 dark:border-slate-900 rounded-2xl p-4 text-left space-y-1.5"
+    >
       <div class="flex gap-x-2 items-center">
         <BoardCell class="size-8! text-sm!" letter="t" status="absent" flipped />
         <BoardCell class="size-8! text-sm!" letter="b" status="absent" flipped />
@@ -43,21 +45,21 @@ import BoardCell from '@/components/game/BoardCell.vue'
     <p>Another try to find matching letters in the target word.</p>
 
     <div class="flex justify-center gap-x-2">
-      <BoardCell letter="f" status="correct" flipped />
-      <BoardCell letter="l" status="correct" flipped />
-      <BoardCell letter="a" status="correct" flipped />
-      <BoardCell letter="s" status="absent" flipped />
-      <BoardCell letter="h" status="absent" flipped />
+      <BoardCell class="size-12! md:size-16!" letter="f" status="correct" flipped />
+      <BoardCell class="size-12! md:size-16!" letter="l" status="correct" flipped />
+      <BoardCell class="size-12! md:size-16!" letter="a" status="correct" flipped />
+      <BoardCell class="size-12! md:size-16!" letter="s" status="absent" flipped />
+      <BoardCell class="size-12! md:size-16!" letter="h" status="absent" flipped />
     </div>
 
     <p>So close!</p>
 
     <div class="flex justify-center gap-x-2">
-      <BoardCell letter="f" status="correct" flipped />
-      <BoardCell letter="l" status="correct" flipped />
-      <BoardCell letter="a" status="correct" flipped />
-      <BoardCell letter="m" status="correct" flipped />
-      <BoardCell letter="e" status="correct" flipped />
+      <BoardCell class="size-12! md:size-16!" letter="f" status="correct" flipped />
+      <BoardCell class="size-12! md:size-16!" letter="l" status="correct" flipped />
+      <BoardCell class="size-12! md:size-16!" letter="a" status="correct" flipped />
+      <BoardCell class="size-12! md:size-16!" letter="m" status="correct" flipped />
+      <BoardCell class="size-12! md:size-16!" letter="e" status="correct" flipped />
     </div>
 
     <p>Got it! 🏆</p>

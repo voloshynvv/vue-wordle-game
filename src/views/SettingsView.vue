@@ -1,20 +1,23 @@
 <script setup lang="ts">
 import { useSettingsStore } from '@/stores/settings'
-import AppSwitch from '@/components/common/AppSwitch.vue'
+import { useDark } from '@vueuse/core'
 
+import AppSwitchGroup from '@/components/common/AppSwitchGroup.vue'
+
+const isDark = useDark()
 const settings = useSettingsStore()
 </script>
 
 <template>
   <h1 class="sr-only">Settings</h1>
 
-  <p class="mb-2">Length</p>
+  <p class="mb-2 text-center">Number of letters</p>
 
-  <div class="grid grid-cols-3 gap-3 mb-8">
+  <div class="flex gap-x-4 justify-center mb-8">
     <button
-      class="rounded-sm p-1 bg-slate-700 cursor-pointer"
+      class="rounded-sm p-1 border-0 border-neutral-400 dark:border-slate-500 size-10 cursor-pointer transition-[scale,background-color] bg-neutral-200 dark:bg-slate-800 hover:scale-110 focus-visible:scale-110"
       :class="{
-        'bg-slate-800': settings.guessLength === 4,
+        'border-2 border-dashed scale-110': settings.guessLength === 4,
       }"
       @click="settings.guessLength = 4"
     >
@@ -22,9 +25,9 @@ const settings = useSettingsStore()
     </button>
 
     <button
-      class="rounded-sm p-1 bg-slate-700 cursor-pointer"
+      class="rounded-sm p-1 border-0 border-neutral-400 dark:border-slate-500 size-10 cursor-pointer transition-[scale,background-color] bg-neutral-200 dark:bg-slate-800 hover:scale-110 focus-visible:scale-110"
       :class="{
-        'bg-slate-800': settings.guessLength === 5,
+        'border-2 border-dashed scale-110': settings.guessLength === 5,
       }"
       @click="settings.guessLength = 5"
     >
@@ -32,9 +35,9 @@ const settings = useSettingsStore()
     </button>
 
     <button
-      class="rounded-sm p-1 bg-slate-700 cursor-pointer"
+      class="rounded-sm p-1 border-0 border-neutral-400 dark:border-slate-500 size-10 cursor-pointer transition-[scale,background-color] bg-neutral-200 dark:bg-slate-800 hover:scale-110 focus-visible:scale-110"
       :class="{
-        'bg-slate-800': settings.guessLength === 6,
+        'border-2 border-dashed scale-110': settings.guessLength === 6,
       }"
       @click="settings.guessLength = 6"
     >
@@ -42,49 +45,27 @@ const settings = useSettingsStore()
     </button>
   </div>
 
-  <div class="flex items-center justify-between gap-x-4 py-4 border-t border-b border-slate-600">
-    <div class="space-y-1">
-      <label class="block" for="hard-mode">Hard mode</label>
-      <p class="text-xs text-slate-300">Any revealed hints must be used in subsequent guesses</p>
-    </div>
+  <AppSwitchGroup
+    v-model="settings.hardMode"
+    label="Hard Mode"
+    description="Any revealed hints must be used in subsequent guesses"
+    class="border-t"
+    id="hard-mode"
+  />
 
-    <AppSwitch id="hard-mode" v-model="settings.hardMode" />
-  </div>
+  <AppSwitchGroup
+    v-model="settings.ignoreKeyboard"
+    label="Onscreen Keyboard Input Only"
+    description="Ignore key input except from the onscreen keyboard. Most helpful for users using speech recognition or other assistive devices."
+    id="ignore-keyboard"
+  />
 
-  <div class="flex items-center justify-between gap-x-4 py-4 border-b border-slate-600">
-    <div class="space-y-1">
-      <label class="block" for="dark-mode">Dark mode</label>
-    </div>
+  <AppSwitchGroup
+    v-model="settings.swapButtons"
+    label="Swap Buttons"
+    description='Swap "Enter" and "Backspace" buttons'
+    id="swap-buttons"
+  />
 
-    <AppSwitch id="dark-mode" />
-  </div>
-
-  <div class="flex items-center justify-between gap-x-4 py-4 border-b border-slate-600">
-    <div class="space-y-1">
-      <label class="block" for="colors-blind">Reduce motion</label>
-    </div>
-
-    <AppSwitch id="colors-blind" />
-  </div>
-
-  <div class="flex items-center justify-between gap-x-4 py-4 border-b border-slate-600">
-    <div class="space-y-1">
-      <label class="block" for="ignore-keyboard">Onscreen Keyboard Input Only</label>
-      <p class="text-xs text-slate-300">
-        Ignore key input except from the onscreen keyboard. Most helpful for users using speech
-        recognition or other assistive devices.
-      </p>
-    </div>
-
-    <AppSwitch id="ignore-keyboard" v-model="settings.ignoreKeyboard" />
-  </div>
-
-  <div class="flex items-center justify-between gap-x-4 py-4 border-b border-slate-600">
-    <div class="space-y-1">
-      <label class="block" for="swap-buttons">Swap Buttons</label>
-      <p class="text-xs text-slate-300">Swap "Enter" and "Backspace" buttons</p>
-    </div>
-
-    <AppSwitch id="swap-buttons" v-model="settings.swapButtons" />
-  </div>
+  <AppSwitchGroup v-model="isDark" label="Dark Mode" id="dark-mode" />
 </template>

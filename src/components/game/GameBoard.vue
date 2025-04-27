@@ -45,7 +45,9 @@ function getCurrentGuess(i: number) {
     />
   </div>
 
-  <p class="text-center mb-4 text-sm rounded-full bg-slate-700 px-3 py-0.5 w-fit mx-auto">
+  <p
+    class="text-center mb-4 text-sm rounded-full bg-neutral-200 dark:bg-slate-700 px-3 py-0.5 w-fit mx-auto"
+  >
     <template v-if="game.status === 'won'">You won</template>
     <template v-else-if="game.status === 'lost'">You lost</template>
     <template v-else>Try to guess a word</template>

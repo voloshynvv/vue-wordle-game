@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap');
 @import 'tailwindcss';
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --font-sans: 'Fira Code', monospace;
 
@@ -37,7 +39,6 @@
 
 @layer base {
   body {
-    background-color: var(--color-gray-950);
-    color: var(--color-white);
+    @apply bg-neutral-100 text-neutral-950 dark:bg-gray-950 dark:text-white;
   }
 }
