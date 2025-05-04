@@ -6,7 +6,7 @@
 @theme {
   --font-sans: 'Fira Code', monospace;
 
-  --animate-shake: shake 0.35s 3;
+  --animate-shake: shake 0.35s infinite;
   --animate-pop-in: pop-in 250ms;
 
   @keyframes shake {
@@ -39,6 +39,7 @@
 
 @layer base {
   body {
-    @apply bg-neutral-100 text-neutral-950 dark:bg-gray-950 dark:text-white;
+    background-color: var(--color-gray-950);
+    color: var(--color-white);
   }
 }

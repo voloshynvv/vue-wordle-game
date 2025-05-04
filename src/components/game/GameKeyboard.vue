@@ -6,12 +6,14 @@ import { useSettingsStore } from '@/stores/settings'
 const settings = useSettingsStore()
 const game = useGameStore()
 
+const hasFocus = ref()
+
 const keyboard = computed(() => {
   return [
     ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'],
     ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'],
     [
-      settings.swapButtons ? 'Backspace' : 'Enter',
+      settings.swapButtons ? 'Enter' : 'Backspace',
       'z',
       'x',
       'c',
@@ -19,17 +21,13 @@ const keyboard = computed(() => {
       'b',
       'n',
       'm',
-      settings.swapButtons ? 'Enter' : 'Backspace',
+      settings.swapButtons ? 'Backspace' : 'Enter',
     ],
   ]
 })
 
-const hasFocus = ref()
-
 function handleKey(keyCode: string) {
-  if (game.animation === 'flip') {
-    return
-  }
+  if (game.isAnimating) return
 
   if (keyCode === 'Enter') {
     game.addGuess()
@@ -69,7 +67,7 @@ onUnmounted(() => window.removeEventListener('keydown', handleKeydownEvent))
       <button
         v-for="keyCode in keys"
         :key="keyCode"
-        class="cursor-pointer rounded-sm bg-neutral-200 p-1.5 px-3 uppercase transition-[background-color,opacity] hover:bg-neutral-300 disabled:cursor-default dark:bg-slate-700 dark:text-white dark:hover:bg-slate-800"
+        class="cursor-pointer rounded-sm bg-slate-700 p-1.5 px-3 text-white uppercase transition-[background-color,opacity] hover:bg-slate-800 disabled:cursor-default"
         @focus="hasFocus = true"
         @blur="hasFocus = false"
         @click="handleKey(keyCode)"

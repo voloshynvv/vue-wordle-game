@@ -21,9 +21,7 @@ import BoardCell from '@/components/game/BoardCell.vue'
       <BoardCell class="size-12! md:size-16!" letter="e" status="correct" flipped />
     </div>
 
-    <div
-      class="space-y-1.5 rounded-2xl border border-neutral-300 bg-neutral-200 p-4 text-left dark:border-slate-900 dark:bg-slate-800"
-    >
+    <div class="space-y-1.5 rounded-2xl border border-slate-900 bg-slate-800 p-4 text-left">
       <div class="flex items-center gap-x-2">
         <BoardCell class="size-8! text-sm!" letter="t" status="absent" flipped />
         <BoardCell class="size-8! text-sm!" letter="b" status="absent" flipped />
