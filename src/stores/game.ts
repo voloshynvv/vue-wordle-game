@@ -7,29 +7,28 @@ import {
   GUESSES_COUNT,
   SHAKE_DURATION_IN_MS,
 } from '@/shared/constants'
-import { checkGuess, getRequiredLetters } from '@/shared/game-utils'
+import { checkGuess, getRandomInt, getRequiredLetters } from '@/shared/game-utils'
 import type { GameStatus } from '@/shared/types'
-import words from '@/data.txt?raw'
+import db from '@/db.txt?raw'
 
 export const useGameStore = defineStore('game', () => {
   const settings = useSettingsStore()
 
-  const target = words.split('\n')[0]
+  const target = ref('')
 
   const animation = ref<'shake' | 'reveal' | null>(null)
 
   const guesses = ref<string[]>([])
   const currentGuess = ref('')
-  const shouldAnimateRow = ref(false)
 
   const status = computed<GameStatus>(() => {
     const latestGuess = guesses.value[guesses.value.length - 1]
 
-    if (latestGuess === target) {
+    if (latestGuess === target.value) {
       return 'won'
     }
 
-    if (guesses.value.length === GUESSES_COUNT && latestGuess !== target) {
+    if (guesses.value.length === GUESSES_COUNT && latestGuess !== target.value) {
       return 'lost'
     }
 
@@ -41,7 +40,7 @@ export const useGameStore = defineStore('game', () => {
   })
 
   const validatedGuesses = computed(() => {
-    return guesses.value.map((guess) => checkGuess(guess, target))
+    return guesses.value.map((guess) => checkGuess(guess, target.value))
   })
 
   const isAnimating = computed(() => animation.value !== null)
@@ -101,6 +100,11 @@ export const useGameStore = defineStore('game', () => {
   function reset() {
     guesses.value = []
     currentGuess.value = ''
+
+    const words = db.split('\n')
+    const randomIndex = getRandomInt(0, words.length)
+
+    target.value = words[randomIndex]
   }
 
   watch(
@@ -109,6 +113,8 @@ export const useGameStore = defineStore('game', () => {
       reset()
     },
   )
+
+  reset()
 
   return {
     guesses,
@@ -119,7 +125,6 @@ export const useGameStore = defineStore('game', () => {
     validatedGuesses,
     animation,
     isAnimating,
-    shouldAnimateRow,
     addGuess,
     append,
     pop,

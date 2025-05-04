@@ -34,3 +34,10 @@ export function getRequiredLetters(currentGuess: string, validatedGuess: Validat
     .filter((item) => item.status !== 'absent' && !currentGuess.includes(item.letter))
     .map((item) => item.letter.toUpperCase())
 }
+
+export function getRandomInt(min: number, max: number) {
+  const minCeiled = Math.ceil(min)
+  const maxFloored = Math.floor(max)
+
+  return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled)
+}
