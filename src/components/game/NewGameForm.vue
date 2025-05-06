@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { GUESS_LENGTH } from '@/shared/constants'
-import { useClipboard } from '@vueuse/core'
 import { ref } from 'vue'
+import { useClipboard } from '@vueuse/core'
+import { GUESS_LENGTH } from '@/shared/constants'
 
 const errors = {
   limit: 'Exactly 5 letters required',
@@ -30,7 +30,7 @@ function submit() {
 
   try {
     const encoded = btoa(userInput.value)
-    copy(`http://localhost:5173?q=${encoded}`)
+    copy(`${window.location.origin}?q=${encoded}`)
   } catch (err) {
     console.log(err)
   }
