@@ -62,7 +62,6 @@ onUnmounted(() => window.removeEventListener('keydown', handleKeydownEvent))
 </script>
 
 <template>
-  {{ game.target }}
   <div class="space-y-1">
     <div class="flex justify-center gap-x-1" v-for="(keys, i) in keyboard" :key="i">
       <button

@@ -11,15 +11,16 @@ import { checkGuess, getRandomInt, getRequiredLetters } from '@/shared/game-util
 import type { GameStatus } from '@/shared/types'
 import wordsRaw from '@/data/words.txt?raw'
 
+const WORDS = wordsRaw.split('\n')
+
 export const useGameStore = defineStore('game', () => {
   const settings = useSettingsStore()
 
   const target = ref('')
-
-  const animation = ref<'shake' | 'reveal' | null>(null)
-
   const guesses = ref<string[]>([])
   const currentGuess = ref('')
+
+  const animation = ref<'shake' | 'reveal' | null>(null)
 
   const status = computed<GameStatus>(() => {
     const latestGuess = guesses.value[guesses.value.length - 1]
@@ -95,25 +96,12 @@ export const useGameStore = defineStore('game', () => {
     currentGuess.value = currentGuess.value.slice(0, -1)
   }
 
-  function reset() {
+  function init(word?: string) {
+    const randomIndex = getRandomInt(0, WORDS.length)
+    target.value = word || WORDS[randomIndex]
     guesses.value = []
     currentGuess.value = ''
-
-    const words = wordsRaw.split('\n')
-
-    const randomIndex = getRandomInt(0, words.length)
-
-    target.value = words[randomIndex]
   }
-
-  watch(
-    () => settings.hardMode,
-    () => {
-      reset()
-    },
-  )
-
-  reset()
 
   return {
     guesses,
@@ -127,6 +115,6 @@ export const useGameStore = defineStore('game', () => {
     addGuess,
     append,
     pop,
-    reset,
+    init,
   }
 })

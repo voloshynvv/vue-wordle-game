@@ -2,7 +2,7 @@
 defineProps<{ target: string; show?: boolean }>()
 
 const emit = defineEmits<{
-  resetGame: []
+  initNewGame: []
 }>()
 </script>
 
@@ -14,7 +14,7 @@ const emit = defineEmits<{
     >
       <p class="mb-1.5 uppercase">{{ target }}</p>
 
-      <button @click="emit('resetGame')" class="cursor-pointer rounded-sm border px-2 py-0.5">
+      <button @click="emit('initNewGame')" class="cursor-pointer rounded-sm border px-2 py-0.5">
         play again
       </button>
     </div>
