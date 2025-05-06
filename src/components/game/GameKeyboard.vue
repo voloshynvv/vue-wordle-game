@@ -63,11 +63,11 @@ onUnmounted(() => window.removeEventListener('keydown', handleKeydownEvent))
 
 <template>
   <div class="space-y-1">
-    <div class="flex justify-center gap-x-1" v-for="(keys, i) in keyboard" :key="i">
+    <div class="flex flex-wrap justify-center gap-1" v-for="(keys, i) in keyboard" :key="i">
       <button
         v-for="keyCode in keys"
         :key="keyCode"
-        class="cursor-pointer rounded-sm bg-slate-700 p-1.5 px-3 text-white uppercase transition-[background-color,opacity] hover:bg-slate-800 disabled:cursor-default"
+        class="cursor-pointer rounded-sm bg-slate-700 p-2 text-sm text-white uppercase transition-[background-color,opacity] hover:bg-slate-800 disabled:cursor-default sm:p-1.5 sm:text-base md:px-3"
         @focus="hasFocus = true"
         @blur="hasFocus = false"
         @click="handleKey(keyCode)"

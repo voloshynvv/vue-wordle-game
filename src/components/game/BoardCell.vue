@@ -16,7 +16,7 @@ defineProps<{
 <template>
   <div class="relative w-fit">
     <div
-      class="flex size-16 items-center justify-center rounded-md border-2 border-slate-500 bg-slate-900 text-xl uppercase transition-transform duration-700 backface-hidden"
+      class="flex size-12 items-center justify-center rounded-md border-2 border-slate-500 bg-slate-900 text-xl uppercase transition-transform duration-700 backface-hidden sm:size-16"
       :class="{
         'rotate-x-180': flipped,
         'unset-transition': !flipped,
