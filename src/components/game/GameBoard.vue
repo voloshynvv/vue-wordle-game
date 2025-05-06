@@ -1,12 +1,18 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import { useGameStore } from '@/stores/game'
 import { useSettingsStore } from '@/stores/settings'
 import { GUESSES_COUNT } from '@/shared/constants'
 
 import BoardRow from './BoardRow.vue'
+import GameAnswerPopup from './GameAnswerPopup.vue'
 
 const game = useGameStore()
 const settings = useSettingsStore()
+
+const show = computed(() => {
+  return game.isOver
+})
 
 function getGuessPerRow(i: number) {
   if (game.guesses[i]) {
@@ -19,10 +25,14 @@ function getGuessPerRow(i: number) {
 
   return ''
 }
+
+function resetGame() {
+  game.reset()
+}
 </script>
 
 <template>
-  <div class="mx-auto mb-4 w-fit space-y-1">
+  <div class="relative mx-auto mb-4 w-fit space-y-1 py-10">
     <div class="space-y-1">
       <BoardRow
         v-for="(_, i) in GUESSES_COUNT"
@@ -33,6 +43,8 @@ function getGuessPerRow(i: number) {
         :class="{ 'animate-shake': game.animation === 'shake' && game.guesses.length === i }"
       />
     </div>
+
+    <GameAnswerPopup :target="game.target" :show @reset-game="resetGame" />
   </div>
 
   <p class="mx-auto mb-4 w-fit rounded-full bg-slate-700 px-3 py-0.5 text-center text-sm">

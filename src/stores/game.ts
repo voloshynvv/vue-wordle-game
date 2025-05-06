@@ -9,7 +9,7 @@ import {
 } from '@/shared/constants'
 import { checkGuess, getRandomInt, getRequiredLetters } from '@/shared/game-utils'
 import type { GameStatus } from '@/shared/types'
-import db from '@/db.txt?raw'
+import wordsRaw from '@/data/words.txt?raw'
 
 export const useGameStore = defineStore('game', () => {
   const settings = useSettingsStore()
@@ -82,8 +82,6 @@ export const useGameStore = defineStore('game', () => {
   }
 
   function append(letter: string) {
-    console.log('append runs')
-
     if (isOver.value || currentGuess.value.length >= settings.guessLength) {
       return
     }
@@ -101,7 +99,8 @@ export const useGameStore = defineStore('game', () => {
     guesses.value = []
     currentGuess.value = ''
 
-    const words = db.split('\n')
+    const words = wordsRaw.split('\n')
+
     const randomIndex = getRandomInt(0, words.length)
 
     target.value = words[randomIndex]
